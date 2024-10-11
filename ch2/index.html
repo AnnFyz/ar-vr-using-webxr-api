@@ -49,6 +49,7 @@
      0.7, 0.7,
     -0.7, 0,
      0.7, 0,
+     -0.7, -0.7,
     ];        
 
     // Create an empty buffer object to store the vertex points
@@ -72,9 +73,20 @@
     const vertexShader = gl.createShader(gl.VERTEX_SHADER);
     gl.shaderSource(vertexShader, vsSource);
     gl.compileShader(vertexShader);
-    const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+
+
+       const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
     gl.shaderSource(fragmentShader, fsSource);
     gl.compileShader(fragmentShader);
+
+
+    if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
+      console.error(gl.getShaderInfoLog(vertexShader));
+    }
+
+    if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
+      console.error(gl.getShaderInfoLog(fragmentShader));
+    }
 
     // Create a GL program to connect the shaders to the GL context
     const program = gl.createProgram();
@@ -101,7 +113,7 @@
     /*==================== Drawing ======================== */
 
     // Clear the canvas
-    gl.clearColor(0, 0, 0, 0);
+    gl.clearColor(0, 1, 0, 0.1);
 
     // Clear the GL context's color buffer for a fresh paint
     gl.clear(gl.COLOR_BUFFER_BIT);
@@ -109,7 +121,7 @@
     // Draw the points on the screen
     const mode = gl.TRIANGLE_STRIP;
     const first = 0;
-    const count = 4;
+    const count = 5;
     gl.drawArrays(mode, first, count);
 
 </script>
