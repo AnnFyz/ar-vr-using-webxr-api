@@ -37,18 +37,18 @@ function main() {
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(squares), gl.STATIC_DRAW);
 
     const squareColors = [
-        0.0,  0.0,  1.0,  1.0,
-        0.0,  0.0,  1.0,  1.0,
-        0.0,  0.0,  1.0,  1.0,
-        0.0,  0.0,  1.0,  1.0,
-        0.0,  0.0,  1.0,  1.0,
-        0.0,  0.0,  1.0,  1.0,
+        1.0,  1.0,  1.0,  1.0,
+        0.0,  1.0,  1.0,  1.0,
+        1.0,  1.0,  1.0,  1.0,
+        1.0,  1.0,  1.0,  1.0,
+        0.0,  1.0,  0.0,  1.0,
+        1.0,  1.0,  1.0,  1.0,
 
         1.0,  0.0,  0.0,  1.0,   
         1.0,  0.0,  0.0,  1.0,  
         1.0,  0.0,  0.0,  1.0,  
-        1.0,  0.0,  0.0,  1.0,  
-        1.0,  0.0,  0.0,  1.0,  
+        1.0,  0.0,  1.0,  1.0,  
+        1.0,  1.0,  0.0,  1.0,  
         1.0,  0.0,  0.0,  1.0,
     ];
      
@@ -58,19 +58,19 @@ function main() {
 
       /*========== Shaders ==========*/
 
-      const vsSource = `
-        attribute vec4 aPosition;
-        attribute vec4 aVertexColor;
+      const vsSource = `     //vertex shader
+        attribute vec4 aPosition;  //aPosition
+        attribute vec4 aVertexColor;  // aVertexColor
 
         varying lowp vec4 vColor;
 
         void main() {
-            gl_Position = aPosition;
+            gl_Position = aPosition; //gl pos is pos of the each point in triangles in squares array
             vColor = aVertexColor;
       }
   `;
 
-    const fsSource = `
+    const fsSource = `    //fragment shader
         varying lowp vec4 vColor;
 
         void main() {

@@ -128,7 +128,7 @@ function main() {
 
   /*========== Connect the attribute with the vertex shader ==========*/
   function render(now){       
-    now *= 0.001;
+    now *= 0.005;
     const deltaTime = now - then;
     then = now;
     
@@ -149,7 +149,7 @@ function main() {
     mat4.rotate(modelViewMatrix,  // destination matrix
           modelViewMatrix,  // matrix to rotate
           cubeRotation,     // amount to rotate in radians
-          [0, 0, 1]);       // axis to rotate around (Z)
+          [0, 1, 1]);       // axis to rotate around (Z) + Y
 
     gl.uniformMatrix4fv(modelMatrixLocation, false, modelViewMatrix);
             
