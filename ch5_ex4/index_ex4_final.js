@@ -157,13 +157,13 @@ function main() {
             camera.updateProjectionMatrix();
         }
         
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
-        cube.rotation.z += 0.01;
+        cube.rotation.x +=  controls.rotationSpeed;
+        cube.rotation.y +=  controls.rotationSpeed;
+        cube.rotation.z +=  controls.rotationSpeed;
 
-        sphere.rotation.x += 0.01;
-        sphere.rotation.y += 0.01;
-        sphere.rotation.y += 0.01;
+        sphere.rotation.x += controls.rotationSpeed;
+        sphere.rotation.y += controls.rotationSpeed;
+        sphere.rotation.y += controls.rotationSpeed;
 
         light.position.x = 20*Math.cos(time);
         light.position.y = 20*Math.sin(time);
