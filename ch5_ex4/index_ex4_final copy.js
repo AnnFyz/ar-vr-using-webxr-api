@@ -1,9 +1,8 @@
-//import * as THREE from './modules/three.module.js';
+import * as THREE from './modules/three.module.js';
 
 main();
 
 function main() {
-
     // create context
     const canvas = document.querySelector("#c");
     const gl = new THREE.WebGLRenderer({
@@ -11,7 +10,6 @@ function main() {
         antialias: true
     });
 
-    gl.shadowMap.enabled = true;
     // create camera
     const angleOfView = 55;
     const aspectRatio = canvas.clientWidth / canvas.clientHeight;
@@ -25,8 +23,6 @@ function main() {
     );
     camera.position.set(0, 8, 30);
 
-    var stats = initStats();
-    
     // create the scene
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0.3, 0.5, 0.8);
@@ -97,59 +93,33 @@ function main() {
     // MESHES
     const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     cube.position.set(cubeSize + 1, cubeSize + 1, 0);
-    cube.castShadow = true;
     scene.add(cube);
 
     const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
     sphere.position.set(-sphereRadius - 1, sphereRadius + 2, 0);
-    sphere.castShadow = true;
     scene.add(sphere);
 
     const plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.rotation.x = Math.PI / 2;
-    plane.receiveShadow = true;
-
     //scene.add(plane);
 
     //LIGHTS
-     const color = 0xffffff;
-     const intensity = 0.5;
-     const light = new THREE.DirectionalLight(color, intensity);
-     light.target = plane;
-     light.position.set(0, 30, 30);
-     scene.add(light);
-     scene.add(light.target);
+    const color = 0xffffff;
+    const intensity = .7;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.target = plane;
+    light.position.set(0, 30, 30);
+    scene.add(light);
+    scene.add(light.target);
 
-    // const ambientColor = 0xffffff;
-    // const ambientIntensity = 0.2;
-    // const ambientLight = new THREE.AmbientLight(ambientColor, ambientIntensity);
-    // scene.add(ambientLight);
-
-     // add spotlight for the shadows
-     var spotLight = new THREE.SpotLight(0xffffff, intensity);
-     spotLight.position.set(-10, 20, -5);
-     spotLight.castShadow = true;
-     scene.add(spotLight);
-
-
-    // add the output of the renderer to the html element
-    //document.getElementById("webgl-output").appendChild(gl.domElement);
-
-    var controls = new function () {
-        this.rotationSpeed = 0.02;
-        this.bouncingSpeed = 0.03;
-    };
-
-    var gui = new dat.GUI();
-    gui.add(controls, 'rotationSpeed', 0, 0.5);
-    gui.add(controls, 'bouncingSpeed', 0, 0.5);
-
-
+    const ambientColor = 0xffffff;
+    const ambientIntensity = 0.2;
+    const ambientLight = new THREE.AmbientLight(ambientColor, ambientIntensity);
+    scene.add(ambientLight);
 
     // DRAW
     function draw(time){
         time *= 0.001;
-        stats.update();
 
         if (resizeGLToDisplaySize(gl)) {
             const canvas = gl.domElement;
