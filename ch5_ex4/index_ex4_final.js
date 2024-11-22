@@ -17,7 +17,7 @@ function main() {
   const nearPlane = 0.1;
   const farPlane = 100;
   const camera = new THREE.PerspectiveCamera(angleOfView, aspectRatio, nearPlane, farPlane);
-  camera.position.set(0, 5, 15);
+  camera.position.set(0, 10, 15);
 
   var stats = initStats();
 
